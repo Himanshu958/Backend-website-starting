@@ -1,0 +1,94 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity=
+"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous" />
+{% endblock %}
+{% block title %}Document{% endblock %}
+ {% block content %}
+  <a href="{{ url_for('dropdown') }}"> click here for main page</a>
+{% if asked != [] :%}
+    <table class="table">
+        <thead style="position: sticky;top: 0" class="thead-dark">
+            <tr>
+                {% for all in header:  %}
+                    {% if all in asked: %}
+                        <th class="header" scope="col">{{all}}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+
+                  {% for all in data: %}
+                     <tr>
+                         {% for item in asked:  %}
+                             <td>{{all[item]}}</td>
+                         {% endfor %}
+                     </tr>
+                  {% endfor %}
+
+        </tbody>
+    </table>
+{% else %}
+    <table class="table">
+
+        <thead style="position: sticky;top: 0" class="thead-dark">
+            <tr>
+                {% for item in header:  %}
+
+                    <th class="header" scope="col">{{item}}</th>
+
+
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+              {% for all in data %}
+
+
+                     <tr>
+                       <td>{{all["S_NO"]}}</td>
+                      <td>{{all.STN_CODE}}</td>
+                       <td>{{all.STN_NAME}}</td>
+                       <td>{{all.ADSTE}}</td>
+                       <td>{{  all.SSE  }}</td>
+                       <td>{{  all.ROUTE  }}</td>
+                       <td>{{ all.SEC }}</td>
+                       <td>{{ all.DIV }}</td>
+                       <td>{{  all.FAIL_TIME  }}</td>
+                       <td>{{  all.RIGHT_TIME  }}</td>
+                       <td>{{ all.DURATION }}</td>
+                       <td>{{ all.FAILURE_REMARKS }}</td>
+                       <td>{{ all.NAME_OF_GEAR_FAILED }}</td>
+                       <td>{{ all.TYPE_OF_MAIN_GEAR_FAILED }}</td>
+                       <td>{{ all.Failed_Gear_Desc }}</td>
+                       <td>{{ all.DEPTT}}</td>
+                       <td>{{ all.Cause }}</td>
+                       <td>{{ all.Train_Detention }}</td>
+                     </tr>
+              {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+    <a href="{{ url_for('add') }}"> Enter data</a>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity=
+    "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+    <script src=
+    "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity=
+    "sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                crossorigin="anonymous">
+    </script>
+    <script src=
+    "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity=
+    "sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+                crossorigin="anonymous">
+    </script>
+{% endblock %}
